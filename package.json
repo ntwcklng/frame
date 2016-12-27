@@ -1,0 +1,20 @@
+{
+  "name": "frame",
+  "version": "0.0.0",
+  "description": "FRAME",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntwcklng/frame.git"
+  },
+  "keywords": [],
+  "author": "Marvin Mieth <ntwcklng@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ntwcklng/frame/issues"
+  },
+  "homepage": "https://github.com/ntwcklng/frame#readme"
+}
