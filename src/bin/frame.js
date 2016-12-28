@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import updateNotifier from 'update-notifier'
 import frameCLI from '../cli'
 
