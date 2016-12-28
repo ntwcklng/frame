@@ -2,24 +2,29 @@
   "name": "frame-cli",
   "version": "0.0.3",
   "description": "FRAME",
-  "main": "index.js",
+  "main": "./build/cli.js",
   "scripts": {
-    "test": "npm run build && npm run lint && ava --fail-fast --verbose",
-    "build": "rimraf lib && babel src --out-dir lib",
-    "build:watch": "rimraf lib && babel src --watch --out-dir lib",
-    "lint": "standard --verbose | snazzy",
-    "lint:fix": "standard --fix"
+    "test": "ava",
+    "pretest": "npm run build && npm run lint",
+    "prepublish": "npm run build",
+    "build": "rimraf build && babel src --out-dir build",
+    "dev": "rimraf build && babel src --watch --out-dir build",
+    "lint": "standard --verbose | snazzy"
   },
   "bin": {
-    "frame": "./lib/bin/frame.js"
+    "frame": "./build/bin/frame.js"
   },
   "files": [
-    "lib",
+    "build",
     "templates"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ntwcklng/frame.git"
+  },
+  "ava": {
+    "failFast": true,
+    "files": "test/*.js"
   },
   "babel": {
     "presets": [
@@ -34,7 +39,7 @@
   },
   "standard": {
     "ignore": [
-      "/lib/**",
+      "/build/**",
       "/templates/**"
     ]
   },

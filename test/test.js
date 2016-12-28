@@ -1,5 +1,5 @@
 import test from 'ava'
-import cli from '../lib/cli'
+import cli from '../build/cli'
 import rimraf from 'rimraf'
 import temp from 'temp'
 
