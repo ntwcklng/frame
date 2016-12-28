@@ -21,7 +21,7 @@ module.exports = {
     devServer: {
         contentBase: "build/",
         publicPath: "/",
-
+        stats: 'errors-only',
         historyApiFallback: true
     },
     module: {

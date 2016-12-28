@@ -13,7 +13,8 @@ const messages = {
   printSuccessMessage (name) {
     log('\n' +
     chalk.dim('To get started just run\n\n') +
-    ` $ cd ${name} && npm start\n`
+    ` $ cd ${name} && npm start\n\n` +
+    `Your App is now avaiable at http://localhost:8080\n`
     )
   }
 }

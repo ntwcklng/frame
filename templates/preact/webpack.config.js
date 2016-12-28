@@ -21,8 +21,8 @@ module.exports = {
     devServer: {
         contentBase: "build/",
         publicPath: "/",
-
-        historyApiFallback: true
+        historyApiFallback: true,
+        stats: 'errors-only'
     },
     module: {
         loaders: [
