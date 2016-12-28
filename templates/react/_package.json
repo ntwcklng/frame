@@ -3,16 +3,24 @@
   "version": "1.0.0",
   "description": "Describe {{name}} here",
   "private": true,
-  "main": "build/bundle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --content-base build/ --hot --inline",
-    "build": "webpack"
+    "start": "./node_modules/.bin/webpack-dev-server --port 8080",
+    "build": "./node_modules/.bin/webpack -p"
   },
   "dependencies": {
+    "autoprefixer": "^6.6.0",
     "babel-plugin-transform-react-jsx": "^6.8.0",
+    "css-loader": "^0.26.1",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.24.1",
+    "node-sass": "^4.1.1",
+    "postcss-import": "^9.0.0",
+    "postcss-url": "^5.1.2",
+    "precss": "^1.4.0",
     "react": "*",
-    "react-dom": "*"
+    "react-dom": "*",
+    "sass-loader": "^4.1.1",
+    "style-loader": "^0.13.1"
   },
   "devDependencies": {
     "babel-core": "^6.13.2",

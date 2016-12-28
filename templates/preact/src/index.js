@@ -1,4 +1,5 @@
 import { preact, h, render, Component } from 'preact'
+import '!style!css!sass!./index.scss'
 
 class MyComp extends Component {
   constructor () {
@@ -17,4 +18,4 @@ class MyComp extends Component {
   }
 }
 
-render(<MyComp />, document.body)
+render(<MyComp />, document.getElementById('preact-root'))

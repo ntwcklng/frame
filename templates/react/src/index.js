@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ReactDom from 'react-dom'
+import '!style!css!sass!./index.scss'
 
 class MyComp extends Component {
   constructor () {
@@ -18,4 +19,4 @@ class MyComp extends Component {
   }
 }
 
-ReactDom.render(<MyComp />, document.body)
+ReactDom.render(<MyComp />, document.getElementById('react-root'))
