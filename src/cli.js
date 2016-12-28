@@ -19,7 +19,7 @@ export default function frameCLI (argv) {
   const type = args._[0]
   const name = args._[1]
 
-  messages.info(boxen('FRAME v' + frameVersion, {padding: 1, margin: 1, borderStyle: 'classic'}))
+  messages.info(boxen('FRAME v' + frameVersion, {padding: 1, margin: 1, borderStyle: 'double', borderColor: 'blue'}))
   if (args.version) {
     process.exit(0)
   }

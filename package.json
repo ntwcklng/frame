@@ -1,7 +1,7 @@
 {
   "name": "frame-cli",
   "version": "0.0.3",
-  "description": "FRAME",
+  "description": "FRAME - Create a new React/Preact Project from the CLI.",
   "main": "./build/cli.js",
   "scripts": {
     "test": "ava",
@@ -21,6 +21,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ntwcklng/frame.git"
+  },
+  "engines": {
+    "node": ">=6.2.0"
   },
   "ava": {
     "failFast": true,
