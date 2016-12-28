@@ -11,7 +11,7 @@
     "lint:fix": "standard --fix"
   },
   "bin": {
-    "frame": "./lib/index.js"
+    "frame": "./lib/bin/frame.js"
   },
   "files": [
     "lib",
