@@ -4,7 +4,7 @@
   "description": "Describe {{name}} here",
   "private": true,
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server --port 8080",
+    "dev": "./node_modules/.bin/webpack-dev-server --port 3000",
     "build": "./node_modules/.bin/webpack -p"
   },
   "dependencies": {

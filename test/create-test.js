@@ -22,11 +22,17 @@ test('create a new preact project without errors', async t => {
     t.is(proj.type, 'preact')
   })
 })
-test('should exit when a wrong project type is given', async t => {
-  await cli({_: ['I_DONT_EXIST', 'tmp-no-exist']}).catch(err => {
+test('create a new Next.js project without errors', async t => {
+  await cli({_: ['next', 'tmp-next'], 'skip-git': true, 'skip-install': true}).then(proj => {
+    t.is(proj.name, 'tmp-next')
+    t.is(proj.type, 'next')
+  })
+})
+test('should exit when an invalid project type is passed', t => {
+  return cli({_: ['invalid', 'tmp-no-exist']}).catch(err => {
     if (err) {
       const firstLine = err.message.split('\n')[0]
-      t.is(firstLine, '> Error! i_dont_exist is not a valid FRAME project type')
+      t.is(firstLine, 'invalid is not a valid FRAME project type')
     } else {
       t.fail('No errors?')
     }

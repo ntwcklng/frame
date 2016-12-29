@@ -4,7 +4,7 @@ import copyTemplateDir from 'copy-template-dir'
 import chalk from 'chalk'
 import glob from 'glob'
 import ora from 'ora'
-import supportedProjects, {prettyProjects} from './supported-projects'
+import {supportedProjects, prettyProjects} from './supported-projects'
 
 export function validateOptions(opts) {
   return new Promise((resolve, reject) => {
@@ -87,13 +87,14 @@ export function initGit(opts) {
 }
 
 export function successfullyCreated(opts) {
-  console.log(`> Successfully created a new ${chalk.bold(opts.type)} Project`)
+  const npmInstall = opts.skipInstall ? ' && npm install ' : ' '
+  console.log(`> Successfully created a new ${chalk.bold(prettyProjects[opts.type])} Project`)
   console.log(`
   ${chalk.dim('To get started run:')}
 
-    ${chalk.cyan(`$ cd ${opts.name} ${opts.skipInstall && '&& npm install '}&& npm start`)}
+    ${chalk.cyan(`$ cd ${opts.name}${npmInstall}&& npm run dev`)}
 
-  ${chalk.dim('Your new Project is then available @ http://localhost:8080')}
+  ${chalk.dim('Your new Project is then available @ http://localhost:3000')}
   `)
   return opts
 }

@@ -1,5 +1,5 @@
 import inquirer from 'inquirer'
-import supportedProjects, {prettyProjects} from './supported-projects'
+import {supportedProjects, prettyProjects} from './supported-projects'
 
 export default function ui(opts) {
   const prompts = [

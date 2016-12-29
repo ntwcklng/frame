@@ -11,7 +11,7 @@ class MyComp extends Component {
   }
   render () {
     return (
-      <div id='foo'>
+      <div className='app'>
         <span>Hello, world! {this.state.clicked}</span>
         <button onClick={e => this.setState({clicked: this.state.clicked + 1})}>Click Me</button>
       </div>

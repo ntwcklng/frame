@@ -4,7 +4,7 @@ import parseArgs from 'minimist'
 import updateNotifier from 'update-notifier'
 import chalk from 'chalk'
 import frame from '../'
-import supportedProjects from '../supported-projects'
+import {supportedProjects} from '../supported-projects'
 
 const pkg = require('../../package.json')
 
@@ -60,4 +60,6 @@ if (args.help) {
   process.exit(0)
 }
 
-frame(args)
+frame(args).catch(err => {
+  console.log(`> ${chalk.red('Error!')} ${err.message}`)
+})

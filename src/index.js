@@ -1,4 +1,3 @@
-import chalk from 'chalk'
 import ui from './ui'
 import createProject from './create-project'
 
@@ -21,6 +20,6 @@ export default function frame(args) {
   })
   .then(opts => createProject(opts))
   .catch(err => {
-    throw new Error(`> ${chalk.red('Error!')} ${err}`)
+    throw new Error(err)
   })
 }

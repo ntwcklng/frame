@@ -1,0 +1,17 @@
+{
+  "name": "{{name}}",
+  "version": "1.0.0",
+  "description": "Describe {{name}} here",
+  "private": true,
+  "scripts": {
+    "start": "next start",
+    "dev": "next",
+    "build": "next build"
+  },
+  "dependencies": {
+    "next": "latest"
+  },
+  "author": "",
+  "license": "MIT",
+  "repository": ""
+}

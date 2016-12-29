@@ -1,5 +1,5 @@
 import test from 'ava'
-import supportedProjects, {prettyProjects} from '../build/supported-projects'
+import {supportedProjects, prettyProjects} from '../build/supported-projects'
 
 test('every supported project should have a pretty name', async t => {
   await supportedProjects.map(proj => {

@@ -1,11 +1,10 @@
-const supportedProjects = [
+export const supportedProjects = [
   'react',
-  'preact'
+  'preact',
+  'next'
 ]
 export const prettyProjects = {
   react: 'React',
-  preact: 'Preact'
+  preact: 'Preact',
+  next: 'Next.js'
 }
-
-export default supportedProjects
-
