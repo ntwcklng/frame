@@ -36,8 +36,12 @@ Examples:
 
  $ frame react my-awesome-new-project
 
-– Create a new Preact Project and initialize git
+– Create a new Preact Project and skip git
 
- $ frame preact my-awesome-preact-project --git
+ $ frame preact my-awesome-preact-project --skip-git
+
+– Create a new React Project and skip npm install
+
+  $ frame react my-awesome-preact-project --skip-install
 
 ```
