@@ -42,6 +42,6 @@ Examples:
 
 – Create a new React Project and skip npm install
 
-  $ frame react my-awesome-preact-project --skip-install
+ $ frame react my-awesome-preact-project --skip-install
 
 ```
