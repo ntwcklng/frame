@@ -58,7 +58,7 @@ function installAppDependencies(opts) {
   return new Promise((resolve, reject) => {
     const spinner = ora(`Installing ${prettyProjects[opts.type]} dependencies`).start()
     const cwd = path.resolve(opts.name)
-    const cmd = 'echo lol'
+    const cmd = 'npm install'
     exec(cmd, {cwd, stdio: 'ignore'}, err => {
       if (err) {
         return reject(err)
