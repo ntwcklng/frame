@@ -65,7 +65,7 @@ function installAppDependencies(opts) {
     opts.spinner.text = `Installing ${prettyProjects[opts.type]} dependencies`
     opts.spinner.start()
     const cwd = path.resolve(opts.name)
-    const cmd = 'echo huhu'
+    const cmd = 'npm install'
     exec(cmd, {cwd, stdio: 'ignore'}, err => {
       if (err) {
         return reject(err)
