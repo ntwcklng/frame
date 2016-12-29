@@ -3,8 +3,8 @@ const supportedProjects = [
   'preact'
 ]
 export const prettyProjects = {
-  'react': 'React',
-  'preact': 'Preact'
+  react: 'React',
+  preact: 'Preact'
 }
 
 export default supportedProjects

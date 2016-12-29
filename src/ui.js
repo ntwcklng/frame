@@ -1,7 +1,7 @@
 import inquirer from 'inquirer'
-import supportedProjects, {prettyProjects} from './supportedProjects'
+import supportedProjects, {prettyProjects} from './supported-projects'
 
-export default function ui (spinner) {
+export default function ui(opts) {
   const prompts = [
     {
       type: 'list',
@@ -22,5 +22,5 @@ export default function ui (spinner) {
     }
   ]
 
-  return inquirer.prompt(prompts).then(answers => Object.assign({}, {type: answers.type, name: answers.name, spinner}))
+  return inquirer.prompt(prompts).then(answers => Object.assign({}, opts, {type: answers.type, name: answers.name}))
 }

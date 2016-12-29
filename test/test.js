@@ -1,29 +1,28 @@
 import test from 'ava'
-import cli from '../build/cli'
 import rimraf from 'rimraf'
 import temp from 'temp'
+import cli from '../build/'
 
 let origCwd
 let tmpDir
-test.before(t => {
+test.before(() => {
   origCwd = process.cwd()
   tmpDir = temp.mkdirSync('frame-new')
   process.chdir(tmpDir)
 })
-test.serial('create a new react project without errors', t => {
-  return cli(['react', 'tmp-react']).then(proj => {
+test.serial('create a new project without errors', async t => {
+  await cli({_: ['react', 'tmp-react']}).then(proj => {
     t.is(proj.name, 'tmp-react')
     t.is(proj.type, 'react')
   })
 })
-test.serial('create a new preact project without errors', t => {
-  return cli(['preact', 'tmp-preact']).then(proj => {
-    t.is(proj.name, 'tmp-preact')
+test.serial('create a new project without errors and no git', async t => {
+  await cli({_: ['preact', 'tmp-preact-skipgit'], 'skip-git': true}).then(proj => {
+    t.is(proj.name, 'tmp-preact-skipgit')
     t.is(proj.type, 'preact')
   })
 })
-
-test.after.always('cleanup', t => {
+test.after.always('cleanup', () => {
   process.chdir(origCwd)
   rimraf(tmpDir, () => {
     return
