@@ -81,7 +81,7 @@ function initGit(opts) {
     } catch (err) {
       return reject(err)
     }
-    console.log(`> Initialzed a git repository`)
+    console.log(`> Initialized a git repository`)
     resolve()
   })
 }
@@ -91,7 +91,7 @@ function successfullyCreated(opts) {
   console.log(`
   ${chalk.dim('To get started run:')}
 
-    ${chalk.cyan(`$ cd ${opts.name} && npm start`)}
+    ${chalk.cyan(`$ cd ${opts.name} ${opts.skipInstall && '&& npm install '}&& npm start`)}
 
   ${chalk.dim('Your new Project is then available @ http://localhost:8080')}
   `)
@@ -102,7 +102,7 @@ const createProject = opts => {
   return Promise.resolve()
   .then(() => validateOptions(opts))
   .then(() => copyTemplate(opts))
-  .then(() => installAppDependencies(opts))
+  .then(() => !opts.skipInstall && installAppDependencies(opts))
   .then(() => !opts.skipGit && initGit(opts))
   .then(() => successfullyCreated(opts))
 }

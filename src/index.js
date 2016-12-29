@@ -1,6 +1,6 @@
+import chalk from 'chalk'
 import ui from './ui'
 import createProject from './create-project'
-import error from './error'
 
 export default function frame(args) {
   const type = args._[0] || ''
@@ -8,7 +8,8 @@ export default function frame(args) {
   const defaultOptions = {
     type: type.toLowerCase(),
     name,
-    skipGit: args['skip-git']
+    skipGit: args['skip-git'],
+    skipInstall: args['skip-install']
   }
 
   return Promise.resolve()
@@ -20,6 +21,6 @@ export default function frame(args) {
   })
   .then(opts => createProject(opts))
   .catch(err => {
-    error(err)
+    throw new Error(`> ${chalk.red('Error!')} ${err}`)
   })
 }

@@ -35,7 +35,8 @@ if (args.help) {
 
   ${chalk.dim('Options:')}
 
-    --git   Initializes a git repository
+    --skip-git        don't initialize a git repository
+    --skip-install    don't install project dependencies
 
   ${chalk.dim('Examples:')}
 
@@ -47,9 +48,13 @@ if (args.help) {
 
     ${chalk.cyan('$ frame react my-awesome-new-project')}
 
-  ${chalk.gray('–')} Create a new Preact Project and initialize git
+  ${chalk.gray('–')} Create a new Preact Project and skip git
 
-    ${chalk.cyan('$ frame preact my-awesome-preact-project --git')}
+    ${chalk.cyan('$ frame preact my-awesome-preact-project --skip-git')}
+
+  ${chalk.gray('–')} Create a new React Project and skip npm install
+
+      ${chalk.cyan('$ frame react my-awesome-preact-project --skip-install')}
 
   `)
   process.exit(0)
