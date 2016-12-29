@@ -1,17 +1,14 @@
-import ora from 'ora'
-import chalk from 'chalk'
 import ui from './ui'
 import createProject from './create-project'
+import error from './error'
 
 export default function frame(args) {
   const type = args._[0] || ''
   const name = args._[1] || ''
-  const spinner = ora(`FRAME`)
   const defaultOptions = {
     type: type.toLowerCase(),
     name,
-    skipGit: args['skip-git'],
-    spinner
+    skipGit: args['skip-git']
   }
 
   return Promise.resolve()
@@ -23,7 +20,6 @@ export default function frame(args) {
   })
   .then(opts => createProject(opts))
   .catch(err => {
-    spinner.text = `${chalk.bold.red('[error]')} ${err}`
-    spinner.fail()
+    error(err)
   })
 }
