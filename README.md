@@ -64,13 +64,8 @@ This runs the full test, including several `npm install`s. It will also lint you
 
 `$ npm test`
 
-#### Linting
-FRAME uses xo for linting.
-
-`$ npm run lint`
-
-#### Builing
-
+#### Building
+`$ npm run build` will just build the `/src` folder. Running `$ npm test` will lint and build everything.
 
 
 Heavily inspired by [nwb](https://github.com/insin/nwb)

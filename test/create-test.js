@@ -18,7 +18,7 @@ test.before(() => {
 
 test('create a new react project without errors', async t => {
   const tmpDir = 'tmp-react'
-  await cli({_: ['react', tmpDir], 'skip-git': true, 'skip-install': true, quiet: true}).then(proj => {
+  await cli({_: ['react', tmpDir], 'skip-git': true, 'skip-install': true, silent: true}).then(proj => {
     const pkg = require(path.resolve(process.cwd(), `./${tmpDir}/package.json`))
     t.is(pkg.dependencies.react, VERSIONS[proj.type])
     t.is(proj.name, tmpDir)
@@ -28,7 +28,7 @@ test('create a new react project without errors', async t => {
 
 test('create a new preact project without errors', async t => {
   const tmpDir = 'tmp-preact'
-  await cli({_: ['preact', tmpDir], 'skip-git': true, 'skip-install': true, quiet: true}).then(proj => {
+  await cli({_: ['preact', tmpDir], 'skip-git': true, 'skip-install': true, silent: true}).then(proj => {
     const pkg = require(path.resolve(process.cwd(), `./${tmpDir}/package.json`))
     t.is(pkg.dependencies.preact, VERSIONS[proj.type])
     t.is(proj.name, tmpDir)
@@ -38,7 +38,7 @@ test('create a new preact project without errors', async t => {
 
 test('create a new Next.js project without errors', async t => {
   const tmpDir = 'tmp-next'
-  await cli({_: ['next', tmpDir], 'skip-git': true, 'skip-install': true, quiet: true}).then(proj => {
+  await cli({_: ['next', tmpDir], 'skip-git': true, 'skip-install': true, silent: true}).then(proj => {
     const pkg = require(path.resolve(process.cwd(), `./${tmpDir}/package.json`))
     t.is(pkg.dependencies.next, VERSIONS[proj.type])
     t.is(proj.name, tmpDir)

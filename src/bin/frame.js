@@ -14,12 +14,12 @@ const args = parseArgs(process.argv.slice(2), {
   alias: {
     h: 'help',
     v: 'version',
-    q: 'quiet'
+    s: 'silent'
   },
-  boolean: ['help', 'version', 'skip-git', 'skip-install', 'quiet']
+  boolean: ['help', 'version', 'skip-git', 'skip-install', 'silent']
 })
 
-if (!args.quiet) {
+if (!args.silent) {
   console.log(boxen('FRAME v' + frameVersion, {padding: 1, margin: 1, borderStyle: 'double', borderColor: 'blue'}))
 }
 
@@ -40,7 +40,7 @@ if (args.help) {
   ${chalk.dim('Options:')}
     --help, -h        display this
     --version, -v     display version
-    --quiet, -q       ssshhhhhhh!
+    --silent, -s      ssshhhhhhh!
     --skip-git        don't initialize a git repository
     --skip-install    don't install project dependencies
 
@@ -65,7 +65,7 @@ if (args.help) {
   `)
   process.exit(0)
 }
-
+process.title = 'FRAME'
 frame(args).catch(err => {
-  console.log(`> ${chalk.red('Error!')} ${err.message}`)
+  console.log(`> ${chalk.red('Error!')} ${err.messag}`)
 })

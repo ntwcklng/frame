@@ -9,8 +9,7 @@
     "pretest": "npm run build",
     "prepublish": "npm run build",
     "build": "rimraf build && babel src --out-dir build",
-    "dev": "rimraf build && babel src --watch --out-dir build",
-    "lint": "xo"
+    "dev": "rimraf build && babel src --watch --out-dir build"
   },
   "bin": {
     "frame": "./build/bin/frame.js"

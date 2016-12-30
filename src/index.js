@@ -9,7 +9,7 @@ export default function frame(args) {
     name,
     skipGit: args['skip-git'],
     skipInstall: args['skip-install'],
-    quiet: args.quiet
+    silent: args.silent
   }
 
   return Promise.resolve()

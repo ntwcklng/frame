@@ -6,8 +6,8 @@ import glob from 'glob'
 import ora from 'ora'
 import {SUPPORTED_PROJECTS, PRINT_PROJ_TYPE, VERSIONS} from './constants'
 
-export function log(type, msg, quiet) {
-  if (!quiet && msg && type) {
+export function log(type, msg) {
+  if (msg && type) {
     switch (type) {
       case 'info':
         console.log(`${chalk.dim(`>`)} ${msg}`)
@@ -52,7 +52,7 @@ export function validateOptions(opts) {
     if (glob.sync(`${opts.name}/`).length !== 0) {
       return reject(`A directory with the name ${chalk.bold(opts.name)} already exists`)
     }
-    log('info', `Validated Options`, opts.quiet)
+    opts.logger('info', `Validated Options`)
     resolve()
   })
 }
@@ -66,7 +66,7 @@ export function copyTemplate(opts) {
       if (err) {
         return reject(err)
       }
-      log('info', `Copied template to ${path.resolve(targetDir)}`, opts.quiet)
+      opts.logger('info', `Copied template to ${path.resolve(targetDir)}`)
       resolve()
     })
   })
@@ -85,7 +85,7 @@ export function installAppDependencies(opts) {
         return reject(err)
       }
       spinner.stop()
-      log('info', `Installed ${PRINT_PROJ_TYPE[opts.type]} dependencies`, opts.quiet)
+      opts.logger('info', `Installed ${PRINT_PROJ_TYPE[opts.type]} dependencies`)
       resolve()
     })
   })
@@ -102,21 +102,21 @@ export function initGit(opts) {
     } catch (err) {
       return reject(err)
     }
-    log('info', `Initialized a git repository`, opts.quiet)
+    opts.logger('info', `Initialized a git repository`)
     resolve()
   })
 }
 
 export function successfullyCreated(opts) {
   const npmInstall = opts.skipInstall ? ' && npm install ' : ' '
-  log('info', chalk.green(`Successfully created a new ${chalk.bold(PRINT_PROJ_TYPE[opts.type])} Project`), opts.quiet)
-  log('normal', `
+  opts.logger('info', chalk.green(`Successfully created a new ${chalk.bold(PRINT_PROJ_TYPE[opts.type])} Project`))
+  opts.logger('normal', `
     ${chalk.dim('To get started run:')}
 
     ${chalk.cyan(`$ cd ${opts.name}${npmInstall}&& npm run dev`)}
 
     ${chalk.dim('Your new Project is then available @ http://localhost:3000')}
-    `, opts.quiet)
+    `)
 
   return opts
 }
