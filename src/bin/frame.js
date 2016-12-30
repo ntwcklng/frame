@@ -67,5 +67,5 @@ if (args.help) {
 }
 process.title = 'FRAME'
 frame(args).catch(err => {
-  console.log(`> ${chalk.red('Error!')} ${err.messag}`)
+  console.log(`> ${chalk.red('Error!')} ${err.message}`)
 })
