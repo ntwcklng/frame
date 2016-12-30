@@ -17,8 +17,8 @@
     "postcss-import": "^9.0.0",
     "postcss-url": "^5.1.2",
     "precss": "^1.4.0",
-    "react": "*",
-    "react-dom": "*",
+    "react": "{{version}}",
+    "react-dom": "{{version}}",
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1"
   },

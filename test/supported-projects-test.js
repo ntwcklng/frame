@@ -1,9 +1,9 @@
 import test from 'ava'
-import {supportedProjects, prettyProjects} from '../build/supported-projects'
+import {SUPPORTED_PROJECTS, PRINT_PROJ_TYPE} from '../build/constants'
 
 test('every supported project should have a pretty name', async t => {
-  await supportedProjects.map(proj => {
-    if (!prettyProjects[proj]) {
+  await SUPPORTED_PROJECTS.map(proj => {
+    if (!PRINT_PROJ_TYPE[proj]) {
       t.fail(`${proj} does not have a pretty name assigned`)
     }
     return t.pass()

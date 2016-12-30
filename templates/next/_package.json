@@ -9,7 +9,7 @@
     "build": "next build"
   },
   "dependencies": {
-    "next": "latest"
+    "next": "{{version}}"
   },
   "author": "",
   "license": "MIT",

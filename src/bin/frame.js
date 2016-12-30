@@ -4,7 +4,7 @@ import parseArgs from 'minimist'
 import updateNotifier from 'update-notifier'
 import chalk from 'chalk'
 import frame from '../'
-import {supportedProjects} from '../supported-projects'
+import {SUPPORTED_PROJECTS} from '../constants'
 
 const pkg = require('../../package.json')
 
@@ -31,7 +31,7 @@ if (args.help) {
 
   ${chalk.dim('Supported Project Types:')}
 
-    ${supportedProjects.join(', ')}
+    ${SUPPORTED_PROJECTS.join(', ')}
 
   ${chalk.dim('Options:')}
 

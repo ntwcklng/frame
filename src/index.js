@@ -13,10 +13,11 @@ export default function frame(args) {
 
   return Promise.resolve()
   .then(() => {
+    const opts = Object.assign({}, defaultOptions)
     if (type && name) {
-      return Object.assign({}, defaultOptions)
+      return opts
     }
-    return ui(defaultOptions)
+    return ui(opts)
   })
   .then(opts => createProject(opts))
   .catch(err => {
