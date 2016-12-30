@@ -8,7 +8,8 @@ export default function frame(args) {
     type: type.toLowerCase(),
     name,
     skipGit: args['skip-git'],
-    skipInstall: args['skip-install']
+    skipInstall: args['skip-install'],
+    quiet: args.quiet
   }
 
   return Promise.resolve()

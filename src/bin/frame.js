@@ -13,16 +13,20 @@ const frameVersion = pkg.version
 const args = parseArgs(process.argv.slice(2), {
   alias: {
     h: 'help',
-    v: 'version'
+    v: 'version',
+    q: 'quiet'
   },
-  boolean: ['help', 'version', 'skip-git']
+  boolean: ['help', 'version', 'skip-git', 'skip-install', 'quiet']
 })
 
-console.log(boxen('FRAME v' + frameVersion, {padding: 1, margin: 1, borderStyle: 'double', borderColor: 'blue'}))
+if (!args.quiet) {
+  console.log(boxen('FRAME v' + frameVersion, {padding: 1, margin: 1, borderStyle: 'double', borderColor: 'blue'}))
+}
 
 if (args.version) {
   process.exit(0)
 }
+
 if (args.help) {
   console.log(`
   ${chalk.dim('Usage:')}
@@ -34,7 +38,9 @@ if (args.help) {
     ${SUPPORTED_PROJECTS.join(', ')}
 
   ${chalk.dim('Options:')}
-
+    --help, -h        display this
+    --version, -v     display version
+    --quiet, -q       ssshhhhhhh!
     --skip-git        don't initialize a git repository
     --skip-install    don't install project dependencies
 

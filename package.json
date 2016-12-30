@@ -5,6 +5,7 @@
   "main": "./build/cli.js",
   "scripts": {
     "test": "xo && ava",
+    "test:watch": "ava --watch --match='!*SKIP_WATCH*'",
     "pretest": "npm run build",
     "prepublish": "npm run build",
     "build": "rimraf build && babel src --out-dir build",
@@ -27,7 +28,11 @@
   },
   "ava": {
     "failFast": true,
-    "files": "test/*.js"
+    "files": "test/*.js",
+    "source": [
+      "src/**/*.js",
+      "!build/**/*"
+    ]
   },
   "babel": {
     "presets": [

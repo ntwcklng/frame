@@ -6,8 +6,22 @@ import glob from 'glob'
 import ora from 'ora'
 import {SUPPORTED_PROJECTS, PRINT_PROJ_TYPE, VERSIONS} from './constants'
 
-export function log(msg) {
-  return console.log(`${chalk.dim(`>`)} ${msg}`)
+export function log(type, msg, quiet) {
+  if (!quiet && msg && type) {
+    switch (type) {
+      case 'info':
+        console.log(`${chalk.dim(`>`)} ${msg}`)
+        break
+      case 'err':
+        console.error(msg)
+        break
+      case 'normal':
+        console.log(msg)
+        break
+      default:
+        break
+    }
+  }
 }
 
 export function validateOptions(opts) {
@@ -38,7 +52,7 @@ export function validateOptions(opts) {
     if (glob.sync(`${opts.name}/`).length !== 0) {
       return reject(`A directory with the name ${chalk.bold(opts.name)} already exists`)
     }
-    log(`Validated Options`)
+    log('info', `Validated Options`, opts.quiet)
     resolve()
   })
 }
@@ -52,7 +66,7 @@ export function copyTemplate(opts) {
       if (err) {
         return reject(err)
       }
-      log(`Copied template to ${path.resolve(targetDir)}`)
+      log('info', `Copied template to ${path.resolve(targetDir)}`, opts.quiet)
       resolve()
     })
   })
@@ -60,7 +74,10 @@ export function copyTemplate(opts) {
 
 export function installAppDependencies(opts) {
   return new Promise((resolve, reject) => {
-    const spinner = ora(`Installing ${PRINT_PROJ_TYPE[opts.type]} dependencies`).start()
+    const spinner = ora(`Installing ${PRINT_PROJ_TYPE[opts.type]} dependencies`)
+    if (!opts.quiet) {
+      spinner.start()
+    }
     const cwd = path.resolve(opts.name)
     const cmd = 'npm install'
     exec(cmd, {cwd, stdio: 'ignore'}, err => {
@@ -68,7 +85,7 @@ export function installAppDependencies(opts) {
         return reject(err)
       }
       spinner.stop()
-      log(`Installed ${PRINT_PROJ_TYPE[opts.type]} dependencies`)
+      log('info', `Installed ${PRINT_PROJ_TYPE[opts.type]} dependencies`, opts.quiet)
       resolve()
     })
   })
@@ -85,20 +102,21 @@ export function initGit(opts) {
     } catch (err) {
       return reject(err)
     }
-    log(`Initialized a git repository`)
+    log('info', `Initialized a git repository`, opts.quiet)
     resolve()
   })
 }
 
 export function successfullyCreated(opts) {
   const npmInstall = opts.skipInstall ? ' && npm install ' : ' '
-  log(chalk.green(`Successfully created a new ${chalk.bold(PRINT_PROJ_TYPE[opts.type])} Project`))
-  console.log(`
-  ${chalk.dim('To get started run:')}
+  log('info', chalk.green(`Successfully created a new ${chalk.bold(PRINT_PROJ_TYPE[opts.type])} Project`), opts.quiet)
+  log('normal', `
+    ${chalk.dim('To get started run:')}
 
     ${chalk.cyan(`$ cd ${opts.name}${npmInstall}&& npm run dev`)}
 
-  ${chalk.dim('Your new Project is then available @ http://localhost:3000')}
-  `)
+    ${chalk.dim('Your new Project is then available @ http://localhost:3000')}
+    `, opts.quiet)
+
   return opts
 }

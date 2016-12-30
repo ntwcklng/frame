@@ -4,7 +4,10 @@
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg?style=flat-square)](https://github.com/sindresorhus/xo)
 
 # FRAME
-Create a React / Preact Project
+Create a React / Preact / Next.js Project
+
+## Install
+`$ npm install -g frame-cli`
 
 ## Usage
 
@@ -19,7 +22,7 @@ Usage:
 
 Supported Project Types:
 
- react, preact
+ react, preact, next
 
 Options:
 
@@ -45,3 +48,29 @@ Examples:
  $ frame react my-awesome-preact-project --skip-install
 
 ```
+
+## Development
+
+Run `$ npm run dev` and start developing. In addition to that, running the test watch mode is recommendable: `$ npm run test:watch`
+
+You can now test your new features with:
+
+`$ node ./build/bin/frame.js `
+
+### All Commands
+
+#### Full Test
+This runs the full test, including several `npm install`s. It will also lint your code with xo.
+
+`$ npm test`
+
+#### Linting
+FRAME uses xo for linting.
+
+`$ npm run lint`
+
+#### Builing
+
+
+
+Heavily inspired by [nwb](https://github.com/insin/nwb)
