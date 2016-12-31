@@ -8,26 +8,27 @@ import temp from 'temp'
 import cli from '../build/'
 import {VERSIONS} from '../build/constants'
 
-function run(opts = {}) {
-  return new Promise((resolve, reject) => {
-    cli({_: [opts.type, opts.targetDir], 'skip-git': true, silent: true}).then(() => {
-      const cwd = path.resolve(process.cwd(), `./${opts.targetDir}`)
-      const pkg = require(path.join(cwd, 'package.json'))
-      exec('npm run build', {cwd, stdio: 'ignore'}, () => {
-        glob('**', {
-          dot: true,
-          cwd,
-          ignore: opts.ignore
-        }, (err, matches) => {
-          if (err) {
-            reject(err)
-          }
-          resolve({matches, pkg})
-        })
+const run = opts => new Promise(async (resolve, reject) => {
+  try {
+    await cli({_: [opts.type, opts.targetDir], 'skip-git': true, silent: false})
+    const cwd = path.resolve(process.cwd(), `./${opts.targetDir}`)
+    const pkg = require(path.join(cwd, 'package.json'))
+    await exec('npm run build', {cwd, stdio: 'inherit'}, () => {
+      glob('**', {
+        dot: true,
+        cwd,
+        ignore: opts.ignore
+      }, (err, matches) => {
+        if (err) {
+          throw new Error(err)
+        }
+        return resolve({matches, pkg})
       })
     })
-  })
-}
+  } catch (err) {
+    reject(err)
+  }
+})
 
 let origCwd
 let tmpDir
@@ -97,6 +98,7 @@ test('SKIP_WATCH create a new Preact Project, install dependencies and build', a
   })
   t.deepEqual(result.matches, shouldMatch)
   t.is(result.pkg.dependencies[type], VERSIONS[type])
+  return
 })
 
 /**
@@ -113,13 +115,18 @@ test('SKIP_WATCH create a new Next.js Project, install dependencies and build', 
     'pages',
     'pages/index.js'
   ]
-  const result = await run({
-    type,
-    targetDir,
-    ignore: ['node_modules/**', '.next/bundles/**', '.next/dist/**']
-  })
-  t.deepEqual(result.matches, shouldMatch)
-  t.is(result.pkg.dependencies[type], VERSIONS[type])
+  try {
+    const result = await run({
+      type,
+      targetDir,
+      ignore: ['node_modules/**', '.next/bundles/**', '.next/dist/**']
+    })
+    t.deepEqual(result.matches, shouldMatch)
+    t.is(result.pkg.dependencies[type], VERSIONS[type])
+    return
+  } catch (err) {
+    throw new Error(err)
+  }
 })
 
 test.after.always('cleanup', () => {
