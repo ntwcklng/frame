@@ -8,6 +8,9 @@ import {SUPPORTED_PROJECTS} from '../constants'
 
 const pkg = require('../../package.json')
 
+const exit = code => {
+  setTimeout(() => process.exit(code || 0), 100)
+}
 updateNotifier({pkg}).notify()
 const frameVersion = pkg.version
 const args = parseArgs(process.argv.slice(2), {
@@ -24,7 +27,7 @@ if (!args.silent) {
 }
 
 if (args.version) {
-  process.exit(0)
+  exit(0)
 }
 
 if (args.help) {
@@ -63,9 +66,20 @@ if (args.help) {
       ${chalk.cyan('$ frame react my-awesome-preact-project --skip-install')}
 
   `)
-  process.exit(0)
+  exit(0)
 }
 process.title = 'FRAME'
-frame(args).catch(err => {
-  console.log(`> ${chalk.red('Error!')} ${err.message}`)
+
+Promise.resolve(args)
+.then(async () => {
+  try {
+    await frame(args)
+  } catch (err) {
+    if (err.userError) {
+      console.error(`> ${chalk.red('Error!')} ${err.message}`)
+    } else {
+      console.error(`> ${chalk.red('Unknown Error!')} ${err.stack}`)
+    }
+    exit(1)
+  }
 })

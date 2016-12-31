@@ -9,7 +9,7 @@ export const PRINT_PROJ_TYPE = {
   next: 'Next.js'
 }
 
-export const NEXTJS_VERSION = 'latest'
+export const NEXTJS_VERSION = '^1.2.3'
 export const REACT_VERSION = 'latest'
 export const PREACT_VERSION = '7.1.x'
 

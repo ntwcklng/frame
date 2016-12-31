@@ -17,13 +17,7 @@ export default function frame(args) {
 
   return Promise.resolve()
   .then(async () => {
-    let options = {}
-
-    if (type && name) {
-      options = Object.assign({}, defaultOptions)
-    } else {
-      options = await ui(defaultOptions)
-    }
+    const options = (type && name) ? Object.assign({}, defaultOptions) : await ui(defaultOptions)
 
     return Promise.resolve()
     .then(() => validateOptions(options))
@@ -31,8 +25,6 @@ export default function frame(args) {
     .then(() => !options.skipInstall && installAppDependencies(options))
     .then(() => !options.skipGit && initGit(options))
     .then(() => successfullyCreated(options))
-  })
-  .catch(err => {
-    throw new Error(err)
+    .then(() => options)
   })
 }

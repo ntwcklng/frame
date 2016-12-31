@@ -1,5 +1,4 @@
 /* eslint-disable import/no-unresolved, import/no-dynamic-require */
-
 import {exec} from 'child_process'
 import path from 'path'
 import glob from 'glob'
