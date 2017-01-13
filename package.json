@@ -59,7 +59,7 @@
   },
   "homepage": "https://github.com/ntwcklng/frame#readme",
   "dependencies": {
-    "boxen": "^0.8.1",
+    "boxen": "^1.0.0",
     "chalk": "^1.1.3",
     "copy-template-dir": "^1.3.0",
     "glob": "^7.1.1",
