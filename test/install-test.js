@@ -98,7 +98,6 @@ test('SKIP_WATCH create a new Preact Project, install dependencies and build', a
   })
   t.deepEqual(result.matches, shouldMatch)
   t.is(result.pkg.dependencies[type], VERSIONS[type])
-  return
 })
 
 /**
@@ -132,6 +131,6 @@ test('SKIP_WATCH create a new Next.js Project, install dependencies and build', 
 test.after.always('cleanup', () => {
   process.chdir(origCwd)
   rimraf(tmpDir, () => {
-    return
+
   })
 })
