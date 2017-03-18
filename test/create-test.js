@@ -36,7 +36,6 @@ test('create a new react project without errors', async t => {
     t.is(pkg.dependencies.react, VERSIONS[proj.type])
     t.is(proj.name, tmpDir)
     t.is(proj.type, 'react')
-    return
   })
 })
 
@@ -47,7 +46,6 @@ test('create a new preact project without errors', async t => {
     t.is(pkg.dependencies.preact, VERSIONS[proj.type])
     t.is(proj.name, tmpDir)
     t.is(proj.type, 'preact')
-    return
   })
 })
 
@@ -58,7 +56,6 @@ test('create a new Next.js project without errors', async t => {
     t.is(pkg.dependencies.next, VERSIONS[proj.type])
     t.is(proj.name, tmpDir)
     t.is(proj.type, 'next')
-    return
   })
 })
 
@@ -74,6 +71,6 @@ test('should exit when an invalid project type is passed', async t => {
 test.after.always('cleanup', () => {
   process.chdir(origCwd)
   rimraf(tmpDir, () => {
-    return
+
   })
 })
