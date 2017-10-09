@@ -1,6 +1,6 @@
 {
   "name": "frame-cli",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "FRAME - Create a new React/Preact Project from the CLI.",
   "main": "./build/cli.js",
   "scripts": {
